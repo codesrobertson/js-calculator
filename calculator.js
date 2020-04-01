@@ -3,9 +3,9 @@ const validOperations = ['+', 'add', '-', 'subtract', '/', 'divide', '*', 'multi
 
 // Helper functions
 function validateNums(input) {
-  if (input.num1(NaN) || input.num2(NaN)) {
+  if (input.num1 == NaN || input.num2 == NaN) {
     return false; 
-  } else if (input.num1(NaN) && input.num2(NaN)) {
+  } else if (input.num1 == NaN && input.num2 == NaN) {
     return false; 
   } else {
     return true; }
