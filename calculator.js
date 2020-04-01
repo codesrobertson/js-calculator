@@ -1,7 +1,66 @@
-// Set a constant array of validOperations 
+// Set array of valid operations 
 const validOperations = ['+', 'add', '-', 'subtract', '/', 'divide', '*', 'multiply']
 
-// Valid inputs
+// Helper functions
+function validateNums(input) {
+  if (input.num1(NaN) || input.num2(NaN)) {
+    return false; 
+  } else if (input.num1(NaN) && input.num2(NaN)) {
+    return false; 
+  } else {
+    return true; }
+}
+
+function validateOperator(input) {
+  if (!validOperations.includes(input.operation)) {
+    return false; }
+  else {
+    return true; }
+}
+
+const addMe = function(num1, num2) {
+  return num1 + num2;
+}
+
+const subMe = function(num1, num2) {
+  return num1 - num2;
+}
+
+const divMe = function(num1, num2) {
+  return num1 / num2;
+}
+
+const mulMe = function(num1, num2) {
+  return num1 * num2;
+}
+
+// Main function 
+function calculate(input) {
+  if (!validateNums(input)) {
+    return ('I spot an error. Looks like one of your values was not numeric.');
+  } else if (!validateOperator(input)) {
+    return ('I spot an error. Looks like your operator isn\'t for addition, subtraction, multiplication, or division.'); 
+  }
+
+  const num1 = input.num1;
+  const num2 = input.num2;
+  const operator = input.operation;
+
+  if (operator === '+' || operator === 'add') {
+    return addMe(num1 + num2);
+
+  } else if (operator === '-' || operator === 'subtract') {
+      return subMe(num1 - num2);
+
+  }else if (operator === '/' || operator === 'divide') {
+      return divMe(num1 / num2);
+
+  }else if (operator === '*' || operator === 'multiply') {
+      return mulMe(num1 * num2);
+  }
+}
+
+// Test Suite
 const aInput = {
   num1: 3,
   num2: 5,
@@ -26,54 +85,28 @@ const mInput = {
   operation: 'multiply' || '*',
 }
 
-// Invalid inputs
 const badInput1 = {
   num1: NaN,
-  num2:!NaN, 
+  num2: !NaN,
   operation: '*',
 }
 
 const badInput2 = {
-  num1: !NaN, 
+  num1: !NaN,
   num2: NaN,
   operation: '/',
 }
 
-// Set a constant array of invalidOperations for easy check later
-const invalidOperations = !!validOperations.includes()
-
 const badInput3 = {
   num1: !NaN,
-  num2: !NaN, 
-  operation: 'Virginia Ham', 
+  num2: !NaN,
+  operation: 'Virginia Ham',
 }
 
-function validateNums(input) {
-  if (input.num1(NaN) || input.num2(NaN)) {
-    console.log('I spot an error. Looks like one of your values was not numeric.'); 
-  } else if (input.num1(NaN) && input.num2(NaN)) {
-    console.log('I spot an error. Looks like neither of your values was numeric.'); 
-  } else {
-    return true; }
-}
-
-function validateOperator(input) {
-  if (!validOperations.includes(input.operation)) {
-    console.log('I spot an error. Looks like your operator isn\'t for addition, subtraction, multiplication, or division.'); }
-  else {
-    return true; }
-}
-
-function calculate(input) {
-  if (!validateNums(input) || !validateOperator(input)) {
-    return false; }
-  else {
-    return true
-  }
-}
-
-
-
-
-// CLI Greeting
-console.log('Welcome to the JavaScript CLI Calculator!')
+console.log(calculate(aInput));
+console.log(calculate(sInput));
+console.log(calculate(dInput));
+console.log(calculate(mInput));
+console.log(calculate(badInput1));
+console.log(calculate(badInput2));
+console.log(calculate(badInput3));
